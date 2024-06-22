@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.category_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.category_list'|trans }}</h1>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'ID'|trans, 'category.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Tytuł'|trans, 'category.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Data Utworzenia'|trans, 'category.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Data Aktualizacji'|trans, 'category.updatedAt') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in pagination.items %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td><a href="{{ url('category_show', {id: category.id}) }}" class="no_underline">{{ category.title }}</a></td>
+                    <td>{{ category.createdAt|format_date('long') }}</td>
+                    <td>{{ category.updatedAt|format_date('long') }}</td>
+                    <td>
+                        <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-primary">{{ 'action.show'|trans }}</a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-secondary">{{ 'action.edit'|trans }}</a>
+                        <form method="post" action="{{ path('category_delete', {'id': category.id}) }}" style="display:inline-block;" onsubmit="return confirm('{{ 'message.delete_confirm'|trans }}');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+                            <button class="btn btn-danger">{{ 'action.delete'|trans }}</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

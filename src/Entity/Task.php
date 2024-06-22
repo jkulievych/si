@@ -1,27 +1,31 @@
 <?php
+
 /**
- * Task entity.
+ * This file is part of the [Your Project] package.
+ *
+ * (c) [Your Company or Your Name] <[your-email@example.com]>
+ *
+ * This source file is subject to the license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Task.
+ * Represents a task object within the system.
+ * Each task is linked to a specific category and has associated creation and update timestamps.
  *
  * @psalm-suppress MissingConstructor
  */
-#[ORM\Entity(repositoryClass: TaskRepository::class)]
 #[ORM\Table(name: 'tasks')]
+#[ORM\Entity(repositoryClass: TaskRepository::class)]
 class Task
 {
     /**
-     * Primary key.
-     *
-     * @var int|null
+     * The identifier for the task.
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,46 +33,38 @@ class Task
     private ?int $id = null;
 
     /**
-     * Created at.
-     *
-     * @var DateTimeImmutable|null
+     * Timestamp when the task was created.
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?DateTimeImmutable $createdAt;
+    private ?\DateTimeImmutable $createdAt = null;
 
     /**
-     * Updated at.
-     *
-     * @var DateTimeImmutable|null
+     * Timestamp when the task was last updated.
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?DateTimeImmutable $updatedAt;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     /**
-     * Title.
-     *
-     * @var string|null
+     * The title of the task.
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
     /**
-     * Category.
-     *
-     * @var Category
+     * The category associated with the task.
      */
-    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     private ?Category $category = null;
 
     /**
-     * Getter for Id.
+     * Retrieves the identifier of the task.
      *
-     * @return int|null Id
+     * @return int|null the identifier of the task or null if not set
      */
     public function getId(): ?int
     {
@@ -76,49 +72,49 @@ class Task
     }
 
     /**
-     * Getter for created at.
+     * Retrieves the creation timestamp of the task.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null the creation timestamp or null if not set
      */
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
     /**
-     * Setter for created at.
+     * Sets the creation timestamp of the task.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable|null $createdAt the new creation timestamp
      */
-    public function setCreatedAt(?DateTimeImmutable $createdAt): void
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
     /**
-     * Getter for updated at.
+     * Retrieves the update timestamp of the task.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null the update timestamp or null if not set
      */
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
     /**
-     * Setter for updated at.
+     * Sets the update timestamp of the task.
      *
-     * @param DateTimeImmutable|null $updatedAt Updated at
+     * @param \DateTimeImmutable|null $updatedAt the new update timestamp
      */
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
     /**
-     * Getter for title.
+     * Retrieves the title of the task.
      *
-     * @return string|null Title
+     * @return string|null the title of the task or null if not set
      */
     public function getTitle(): ?string
     {
@@ -126,20 +122,32 @@ class Task
     }
 
     /**
-     * Setter for title.
+     * Sets the title of the task.
      *
-     * @param string|null $title Title
+     * @param string|null $title the new title of the task
      */
     public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
 
+    /**
+     * Retrieves the category associated with the task.
+     *
+     * @return Category|null the category or null if not set
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Assigns a category to the task.
+     *
+     * @param Category|null $category the category to assign to the task
+     *
+     * @return static this instance for method chaining
+     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
