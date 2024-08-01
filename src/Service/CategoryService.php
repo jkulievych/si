@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Symfony Community <https://symfony.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
 
 namespace App\Service;
 
@@ -6,10 +14,8 @@ use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\TaskRepository;
-use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\OptimisticLockException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -18,9 +24,11 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class CategoryService implements CategoryServiceInterface
 {
-    private $categoryRepository;
-    private $paginator;
-    private $taskRepository; // Dodajemy nowe pole do klasy
+    /**
+     * @var QuestionRepository
+     */
+    public $questionRepository;
+    // Dodajemy nowe pole do klasy
 
     /**
      * Items per page.
@@ -35,15 +43,9 @@ class CategoryService implements CategoryServiceInterface
      * @param QuestionRepository $questionRepository Question repository
      * @param TaskRepository     $taskRepository     Task repository
      */
-    public function __construct(
-        CategoryRepository $categoryRepository,
-        PaginatorInterface $paginator,
-        private readonly QuestionRepository $questionRepository,
-        TaskRepository $taskRepository // Dodanie TaskRepository do konstruktora
-    ) {
-        $this->categoryRepository = $categoryRepository;
-        $this->paginator = $paginator;
-        $this->taskRepository = $taskRepository; // Inicjalizacja nowego pola
+    public function __construct(private readonly CategoryRepository $categoryRepository, private readonly PaginatorInterface $paginator, QuestionRepository $questionRepository, private readonly TaskRepository $taskRepository)
+    {
+        $this->questionRepository = $questionRepository;
     }
 
     /**
@@ -92,7 +94,7 @@ class CategoryService implements CategoryServiceInterface
     public function canBeDeleted(Category $category): bool
     {
         try {
-            $result = $this->taskRepository->countByCategory($category); // Użycie TaskRepository
+            $result = $this->taskRepository->countByCategory($category);
 
             return $result <= 0;
         } catch (NoResultException|NonUniqueResultException) {

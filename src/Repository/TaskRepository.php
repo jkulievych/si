@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of the [Your Project] package.
+ *
+ * (c) [Your Name or Your Company] <[your-email@example.com]>
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed with this source code.
+ */
 
 namespace App\Repository;
 
@@ -57,18 +65,6 @@ class TaskRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(?QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('task');
-    }
-
-    /**
      * Count tasks by category.
      *
      * @param Category $category Category
@@ -80,12 +76,24 @@ class TaskRepository extends ServiceEntityRepository
      */
     public function countByCategory(Category $category): int
     {
-        $qb = $this->getOrCreateQueryBuilder();
+        $qb = \THIS->getOrCreateQueryBuilder();
 
         return $qb->select($qb->expr()->countDistinct('task.id'))
             ->where('task.category = :category')
             ->setParameter(':category', $category)
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(?QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('task');
     }
 }

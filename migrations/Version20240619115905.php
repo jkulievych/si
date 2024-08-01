@@ -19,29 +19,27 @@ final class Version20240619115905 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
-        $tableName = $schema->getTable('categories')->getName();
-        $dbName = $this->connection->getDatabase();
+        // Ensure the categories table exists
+        if ($schema->hasTable('categories')) {
+            $table = $schema->getTable('categories');
 
-        // Check if the 'slug' column already exists in the 'categories' table
-        $columnExists = $this->connection->fetchOne("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? AND COLUMN_NAME = 'slug'", [$dbName, $tableName]);
-
-        if ($columnExists == 0) {
-            $this->addSql('ALTER TABLE categories ADD slug VARCHAR(64) NOT NULL');
+            // Check if the slug column already exists
+            if (!$table->hasColumn('slug')) {
+                $this->addSql('ALTER TABLE categories ADD slug VARCHAR(64) NOT NULL');
+            }
         }
     }
 
     public function down(Schema $schema): void
     {
-        // Check if the 'slug' column exists before trying to drop it
-        $tableName = $schema->getTable('categories')->getName();
-        $dbName = $this->connection->getDatabase();
+        // Ensure the categories table exists
+        if ($schema->hasTable('categories')) {
+            $table = $schema->getTable('categories');
 
-        // Check if the 'slug' column exists in the 'categories' table
-        $columnExists = $this->connection->fetchOne("SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ? AND COLUMN_NAME = 'slug'", [$dbName, $tableName]);
-
-        if ($columnExists > 0) {
-            $this->addSql('ALTER TABLE categories DROP COLUMN slug');
+            // Check if the slug column exists before trying to drop it
+            if ($table->hasColumn('slug')) {
+                $this->addSql('ALTER TABLE categories DROP COLUMN slug');
+            }
         }
     }
 }

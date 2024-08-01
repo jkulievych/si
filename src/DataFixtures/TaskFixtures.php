@@ -6,8 +6,12 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
+use App\Entity\Enum\TaskStatus;
+// use App\Entity\Tag;
 use App\Entity\Task;
+use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker\Generator;
 
 /**
  * Class TaskFixtures.
@@ -23,7 +27,7 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      */
     public function loadData(): void
     {
-        if (!$this->manager instanceof \Doctrine\Persistence\ObjectManager || !$this->faker instanceof \Faker\Generator) {
+        if (!$this->manager instanceof ObjectManager || !$this->faker instanceof Generator) {
             return;
         }
 
@@ -44,6 +48,21 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $category = $this->getRandomReference('categories');
             $task->setCategory($category);
 
+            /** @var array<array-key, Tag> $tags */
+            $tags = $this->getRandomReferences(
+                'tags',
+                $this->faker->numberBetween(0, 5)
+            );
+            foreach ($tags as $tag) {
+                $task->addTag($tag);
+            }
+
+            $task->setStatus(TaskStatus::from($this->faker->numberBetween(1, 2)));
+
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $task->setAuthor($author);
+
             return $task;
         });
 
@@ -56,10 +75,10 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      *
      * @return string[] of dependencies
      *
-     * @psalm-return array{0: CategoryFixtures::class}
+     * @psalm-return array{0: CategoryFixtures::class, 1: UserFixtures::class}
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [CategoryFixtures::class, UserFixtures::class];
     }
 }

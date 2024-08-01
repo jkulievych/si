@@ -61,10 +61,13 @@ class Task
     #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
     private ?Category $category = null;
 
+    #[ORM\ManyToOne]
+    private ?User $author = null;
+
     /**
      * Retrieves the identifier of the task.
      *
-     * @return int|null the identifier of the task or null if not set
+     * @return int|null The identifier of the task or null if not set
      */
     public function getId(): ?int
     {
@@ -74,7 +77,7 @@ class Task
     /**
      * Retrieves the creation timestamp of the task.
      *
-     * @return \DateTimeImmutable|null the creation timestamp or null if not set
+     * @return \DateTimeImmutable|null The creation timestamp or null if not set
      */
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -84,7 +87,7 @@ class Task
     /**
      * Sets the creation timestamp of the task.
      *
-     * @param \DateTimeImmutable|null $createdAt the new creation timestamp
+     * @param \DateTimeImmutable|null $createdAt The new creation timestamp
      */
     public function setCreatedAt(?\DateTimeImmutable $createdAt): void
     {
@@ -94,7 +97,7 @@ class Task
     /**
      * Retrieves the update timestamp of the task.
      *
-     * @return \DateTimeImmutable|null the update timestamp or null if not set
+     * @return \DateTimeImmutable|null The update timestamp or null if not set
      */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
@@ -104,7 +107,7 @@ class Task
     /**
      * Sets the update timestamp of the task.
      *
-     * @param \DateTimeImmutable|null $updatedAt the new update timestamp
+     * @param \DateTimeImmutable|null $updatedAt The new update timestamp
      */
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
     {
@@ -114,7 +117,7 @@ class Task
     /**
      * Retrieves the title of the task.
      *
-     * @return string|null the title of the task or null if not set
+     * @return string|null The title of the task or null if not set
      */
     public function getTitle(): ?string
     {
@@ -124,7 +127,7 @@ class Task
     /**
      * Sets the title of the task.
      *
-     * @param string|null $title the new title of the task
+     * @param string|null $title The new title of the task
      */
     public function setTitle(?string $title): void
     {
@@ -134,7 +137,7 @@ class Task
     /**
      * Retrieves the category associated with the task.
      *
-     * @return Category|null the category or null if not set
+     * @return Category|null The category or null if not set
      */
     public function getCategory(): ?Category
     {
@@ -144,13 +147,37 @@ class Task
     /**
      * Assigns a category to the task.
      *
-     * @param Category|null $category the category to assign to the task
+     * @param Category|null $category The category to assign to the task
      *
-     * @return static this instance for method chaining
+     * @return static This instance for method chaining
      */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Retrieves the author of the task.
+     *
+     * @return User|null The author of the task or null if not set
+     */
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    /**
+     * Sets the author of the task.
+     *
+     * @param User|null $author The author to set for the task
+     *
+     * @return static This instance for method chaining
+     */
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }

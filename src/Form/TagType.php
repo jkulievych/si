@@ -1,33 +1,31 @@
 <?php
 /**
- * Task type.
+ * This file is part of the App package.
+ *
+ * (c) [Your Name] <your@email.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Form;
 
-use App\Entity\Category;
-use App\Entity\Task;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Tag;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TaskType.
+ * Class TagType.
  */
-class TaskType extends AbstractType
+class TagType extends AbstractType
 {
     /**
      * Builds the form.
      *
-     * This method is called for each type in the hierarchy starting from the
-     * top most type. Type extensions can further modify the form.
-     *
      * @param FormBuilderInterface $builder The form builder
      * @param array<string, mixed> $options Form options
-     *
-     * @see FormTypeExtensionInterface::buildForm()
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -35,20 +33,9 @@ class TaskType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'label.title',
+                'label' => 'Title',
                 'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
-        $builder->add(
-            'category',
-            EntityType::class,
-            [
-                'class' => Category::class,
-                'choice_label' => fn ($category): string => $category->getTitle(),
-                'label' => 'label.category',
-                'placeholder' => 'label.none',
-                'required' => true,
+                'attr' => ['maxlength' => 64],
             ]
         );
     }
@@ -60,19 +47,16 @@ class TaskType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Task::class]);
+        $resolver->setDefaults(['data_class' => Tag::class]);
     }
 
     /**
      * Returns the prefix of the template block name for this type.
      *
-     * The block prefix defaults to the underscored short class name with
-     * the "Type" suffix removed (e.g. "UserProfileType" => "user_profile").
-     *
      * @return string The prefix of the template block name
      */
     public function getBlockPrefix(): string
     {
-        return 'task';
+        return 'tag';
     }
 }
