@@ -1,0 +1,497 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="Actions">
+        <source>Actions</source>
+        <target>Akcje</target>
+      </trans-unit>
+      <trans-unit id="id">
+        <source>id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="Id">
+        <source>Id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="Title">
+        <source>Title</source>
+        <target>Tytuł</target>
+      </trans-unit>
+      <trans-unit id="Content">
+        <source>Content</source>
+        <target>Zawartość</target>
+      </trans-unit>
+      <trans-unit id="Tags">
+        <source>Tags</source>
+        <target>Tagi</target>
+      </trans-unit>
+      <trans-unit id="from">
+         <source>from</source>
+         <target>od</target>
+       </trans-unit>
+      <trans-unit id="Empty list">
+        <source>Empty list</source>
+        <target>Lista jest pusta.</target>
+      </trans-unit>
+      <trans-unit id="Record not found">
+        <source>Record not found</source>
+        <target>Rekord nie został znaleziony.</target>
+      </trans-unit>
+      <trans-unit id="Record list">
+        <source>Record list</source>
+        <target>Lista rekordów</target>
+      </trans-unit>
+      <trans-unit id="title.record_view">
+        <source>title.record_view</source>
+        <target>Widok rekordu #%id%</target>
+      </trans-unit>
+      <trans-unit id="title.news_details">
+        <source>title.news_details</source>
+        <target>Szczegóły wiadomości #%id%</target>
+      </trans-unit>
+      <trans-unit id="Created at">
+        <source>Created at</source>
+        <target>Utworzono</target>
+      </trans-unit>
+      <trans-unit id="Updated at">
+        <source>Updated at</source>
+        <target>Zaktualizowano</target>
+      </trans-unit>
+      <trans-unit id="Description">
+        <source>Description</source>
+        <target>Opis</target>
+      </trans-unit>
+      <trans-unit id="title.news_list">
+        <source>title.news_list</source>
+        <target>Lista wiadomości</target>
+      </trans-unit>
+      <trans-unit id="Category">
+        <source>Category</source>
+        <target>Kategoria</target>
+      </trans-unit>
+      <trans-unit id="Back to list">
+        <source>Back to list</source>
+        <target>Powrót do listy</target>
+      </trans-unit>
+      <trans-unit id="Show">
+        <source>Show</source>
+        <target>Pokaż</target>
+      </trans-unit>
+      <trans-unit id="message.created_successfully">
+          <source>message.created_successfully</source>
+          <target>Utworzono pomyślnie.</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_tasks">
+          <source>message.category_contains_tasks</source>
+          <target>Ta kategoria zawiera zadania i nie moźe być usunięta.</target>
+      </trans-unit>
+      <trans-unit id="message.deleted_successfully">
+          <source>message.deleted_successfully</source>
+          <target>Usunięto pomyślnie.</target>
+      </trans-unit>
+      <trans-unit id="message.edited_successfully">
+          <source>message.edited_successfully</source>
+          <target>Edytowano pomyślnie.</target>
+      </trans-unit>
+      <trans-unit id="Create category">
+          <source>Create category</source>
+          <target>Utwórz kategorię</target>
+      </trans-unit>
+      <trans-unit id="Save">
+          <source>Save</source>
+          <target>Zapisz</target>
+      </trans-unit>
+      <trans-unit id="title.category_delete">
+          <source>title.category_delete</source>
+          <target>Usuń kategorię #%id%</target>
+      </trans-unit>
+      <trans-unit id="Delete">
+          <source>Delete</source>
+          <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id="Delete news">
+                <source>Delete news</source>
+                <target>Usuń wiadomośc</target>
+            </trans-unit>
+      <trans-unit id="title.category_edit">
+          <source>title.category_edit</source>
+          <target>Edytuj kategorię #%id%</target>
+      </trans-unit>
+      <trans-unit id="Edit">
+          <source>Edit</source>
+          <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="Rate">
+          <source>Rate</source>
+          <target>Oceń</target>
+      </trans-unit>
+      <trans-unit id="Comment">
+          <source>Comment</source>
+          <target>Skomentuj</target>
+      </trans-unit>
+      <trans-unit id="message.form_error">
+          <source>message.form_error</source>
+          <target>Wystąpił błąd podczas przesyłania formularza. Sprawdź formularz i spróbuj ponownie.</target>
+      </trans-unit>
+      <trans-unit id="Create news">
+          <source>Create news</source>
+          <target>Utwórz wiadomośc</target>
+      </trans-unit>
+      <trans-unit id="title.news_delete">
+          <source>title.news_delete</source>
+          <target>Usuń wiadomośc #%id%</target>
+      </trans-unit>
+      <trans-unit id="title.news_edit">
+          <source>title.news_edit</source>
+          <target>Edytuj wiadomośc #%id%</target>
+      </trans-unit>
+      <trans-unit id="label.none">
+          <source>label.none</source>
+          <target>Brak etykiety</target>
+      </trans-unit>
+      <trans-unit id="validators.current_password">
+        <source>validators.current_password</source>
+        <target>Proszę wprowadzić swoje aktualne hasło</target>
+      </trans-unit>
+      <trans-unit id="validators.new_password">
+        <source>validators.new_password</source>
+        <target>Proszę wprowadzić nowe hasło</target>
+      </trans-unit>
+      <trans-unit id="validators.password_length">
+        <source>validators.password_length</source>
+        <target>Twoje hasło powinno mieć co najmniej {{ limit }} znaków</target>
+      </trans-unit>
+      <trans-unit id="validators.password_mismatch">
+        <source>validators.password_mismatch</source>
+        <target>Pola hasła muszą się zgadzać.</target>
+      </trans-unit>
+      <trans-unit id="message.invalid_token">
+        <source>message.invalid_token</source>
+        <target>Nieprawidłowy token</target>
+      </trans-unit>
+      <trans-unit id="label.user">
+        <source>label.user</source>
+        <target>Użytkownik</target>
+      </trans-unit>
+      <trans-unit id="Comment successfully added!">
+              <source>Comment successfully added!</source>
+              <target>Komentarz został dodany pomyślnie</target>
+            </trans-unit>
+      <trans-unit id="action_logout">
+        <source>action_logout</source>
+        <target>Wyloguj się</target>
+      </trans-unit>
+      <trans-unit id="action_change_password">
+        <source>action_change_password</source>
+        <target>Zmień hasło</target>
+      </trans-unit>
+      <trans-unit id="action_login">
+        <source>action_login</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+      <trans-unit id="action_register">
+        <source>action_register</source>
+        <target>Zarejestruj się</target>
+      </trans-unit>
+      <trans-unit id="title.category_list">
+        <source>title.category_list</source>
+        <target>Lista kategorii</target>
+      </trans-unit>
+      <trans-unit id="Author">
+        <source>Author</source>
+        <target>Autor</target>
+      </trans-unit>
+      <trans-unit id="label.comment">
+        <source>label.comment</source>
+        <target>Komentarz</target>
+      </trans-unit>
+      <trans-unit id="Tag">
+        <source>Tag</source>
+        <target>Tag</target>
+      </trans-unit>
+      <trans-unit id="label_comment">
+        <source>label_comment</source>
+        <target>Komentarz</target>
+      </trans-unit>
+      <trans-unit id="title.change_password">
+        <source>title.change_password</source>
+        <target>Zmień hasło</target>
+      </trans-unit>
+      <trans-unit id="Create tag">
+        <source>Create tag</source>
+        <target>Utwórz tag</target>
+      </trans-unit>
+      <trans-unit id="title.tag_delete">
+        <source>title.tag_delete</source>
+        <target>Usuń tag</target>
+      </trans-unit>
+      <trans-unit id="title.tag_edit">
+        <source>title.tag_edit</source>
+        <target>Edytuj tag</target>
+      </trans-unit>
+      <trans-unit id="title.tag_list">
+        <source>title.tag_list</source>
+        <target>Lista tagów</target>
+      </trans-unit>
+      <trans-unit id="title.tag_details">
+        <source>title.tag_details</source>
+        <target>Szczegóły tagu</target>
+      </trans-unit>
+      <trans-unit id="Create user">
+        <source>Create user</source>
+        <target>Utwórz użytkownika</target>
+      </trans-unit>
+      <trans-unit id="title.user_delete">
+        <source>title.user_delete</source>
+        <target>Usuń użytkownika</target>
+      </trans-unit>
+      <trans-unit id="title.user_edit">
+        <source>title.user_edit</source>
+        <target>Edytuj użytkownika</target>
+      </trans-unit>
+      <trans-unit id="title.user_list">
+        <source>title.user_list</source>
+        <target>Lista użytkowników</target>
+      </trans-unit>
+      <trans-unit id="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="Roles">
+        <source>Roles</source>
+        <target>Rola</target>
+      </trans-unit>
+      <trans-unit id="title.user_details">
+        <source>title.user_details</source>
+        <target>Szczegóły użytkownika</target>
+      </trans-unit>
+
+      <trans-unit id="label.many_news">
+          <source>label.many_news</source>
+          <target>Wiadomości</target>
+      </trans-unit>
+
+      <trans-unit id="Categories">
+          <source>Categories</source>
+          <target>Kategorie</target>
+      </trans-unit>
+
+      <trans-unit id="Comments">
+          <source>Comments</source>
+          <target>Komentarze</target>
+      </trans-unit>
+
+      <trans-unit id="Selected">
+                <source>Selected</source>
+                <target>Wybrane</target>
+            </trans-unit>
+
+      <trans-unit id="Leave a Comment">
+          <source>Leave a Comment</source>
+          <target>Zostaw komentarz</target>
+      </trans-unit>
+
+      <trans-unit id="Back">
+                <source>Back</source>
+                <target>Wstecz</target>
+            </trans-unit>
+
+      <trans-unit id="Change password">
+          <source>Change password</source>
+          <target>Zmień hasło</target>
+      </trans-unit>
+
+      <trans-unit id="Logout">
+          <source>Logout</source>
+          <target>Wyloguj się</target>
+      </trans-unit>
+
+      <trans-unit id="Login">
+          <source>Login</source>
+          <target>Zaloguj się</target>
+      </trans-unit>
+
+      <trans-unit id="action.register">
+          <source>action.register</source>
+          <target>Zarejestruj się</target>
+      </trans-unit>
+
+      <trans-unit id="label.page_title">
+          <source>label.page_title</source>
+          <target>Tytuł strony</target>
+      </trans-unit>
+
+      <trans-unit id="label.category_details">
+          <source>label.category_details</source>
+          <target>Szczegóły kategorii</target>
+      </trans-unit>
+
+      <trans-unit id="label.news_title">
+          <source>label.news_title</source>
+          <target>Tytuł wiadomości</target>
+      </trans-unit>
+
+      <trans-unit id="title.comment_create">
+          <source>title.comment_create</source>
+          <target>Utwórz komentarz</target>
+      </trans-unit>
+
+      <trans-unit id="title.comment_delete">
+          <source>title.comment_delete</source>
+          <target>Usuń komentarz</target>
+      </trans-unit>
+
+      <trans-unit id="title.comment_edit">
+          <source>title.comment_edit</source>
+          <target>Edytuj komentarz</target>
+      </trans-unit>
+
+      <trans-unit id="title.comment_list">
+          <source>title.comment_list</source>
+          <target>Lista komentarzy</target>
+      </trans-unit>
+
+      <trans-unit id="News">
+          <source>News</source>
+          <target>Wiadomośći</target>
+      </trans-unit>
+
+      <trans-unit id="title.comment_details">
+          <source>title.comment_details</source>
+          <target>Szczegóły komentarza</target>
+      </trans-unit>
+
+      <trans-unit id="NEWS Magazine">
+          <source>NEWS Magazine</source>
+          <target>NEWS Magazine</target>
+      </trans-unit>
+
+      <trans-unit id="All categories">
+          <source>All categories</source>
+          <target>Wszystkie kategorie</target>
+      </trans-unit>
+
+      <trans-unit id="All tags">
+          <source>All tags</source>
+          <target>Wszystkie tagi</target>
+      </trans-unit>
+
+      <trans-unit id="Filter">
+          <source>Filter</source>
+          <target>Filtruj</target>
+      </trans-unit>
+
+      <trans-unit id="message.logged_in">
+          <source>message.logged_in</source>
+          <target>Zalogowano</target>
+      </trans-unit>
+
+      <trans-unit id="message/logged_out">
+          <source>message/logged_out</source>
+          <target>Wylogowano</target>
+      </trans-unit>
+
+      <trans-unit id="Sign in">
+          <source>Sign in</source>
+          <target>Zaloguj się</target>
+      </trans-unit>
+
+      <trans-unit id="last_username">
+          <source>last_username</source>
+          <target>Ostatni użytkownik</target>
+      </trans-unit>
+
+      <trans-unit id="Password">
+          <source>Password</source>
+          <target>Hasło</target>
+      </trans-unit>
+
+      <trans-unit id="Remember me">
+          <source>Remember me</source>
+          <target>Zapamiętaj mnie</target>
+      </trans-unit>
+        <trans-unit id="label.average_rating">
+            <source>label.average_rating</source>
+            <target>Ocena</target>
+        </trans-unit>
+        <trans-unit id="action.rate">
+            <source>action.rate</source>
+            <target>Oceń</target>
+        </trans-unit>
+        <trans-unit id="message.access_denied">
+            <source>message.access_denied</source>
+            <target>Brak dostępu</target>
+        </trans-unit>
+        <trans-unit id="Users">
+            <source>Users</source>
+            <target>Użytkownicy</target>
+        </trans-unit>
+        <trans-unit id="action.news_rate">
+            <source>action.news_rate</source>
+            <target>Oceń</target>
+        </trans-unit>
+        <trans-unit id="Submit">
+            <source>Submit</source>
+            <target>Wyślij</target>
+        </trans-unit>
+
+                <trans-unit id="Repeat password">
+                    <source>Repeat password</source>
+                    <target>Powtórz hasło</target>
+                </trans-unit>
+                <trans-unit id="Register">
+                    <source>Register</source>
+                    <target>Zarejestruj się</target>
+                </trans-unit>
+                <trans-unit id="Current password">
+                    <source>Current password</source>
+                    <target>Obecne hasło</target>
+                </trans-unit>
+                <trans-unit id="New password">
+                    <source>New password</source>
+                    <target>Nowe hasło</target>
+                </trans-unit>
+                <trans-unit id="Repeat new password">
+                    <source>Repeat new password</source>
+                    <target>Powtórz hasło</target>
+                </trans-unit>
+                <trans-unit id="action_news_rate">
+                    <source>action_news_rate</source>
+                    <target>Oceń</target>
+                </trans-unit>
+                <trans-unit id="label.selected">
+                    <source>label.selected</source>
+                    <target>Wybrane</target>
+                </trans-unit>
+                <trans-unit id="label.back_to_list">
+                    <source>label.back_to_list</source>
+                    <target>Powrót do listy</target>
+                </trans-unit>
+        <trans-unit id="label.log_in">
+            <source>label.log_in</source>
+            <target>Zaloguj się</target>
+        </trans-unit>
+        <trans-unit id="message.incorrect_password">
+            <source>message.incorrect_password</source>
+            <target>Nieprawidłowe hasło</target>
+        </trans-unit>
+        <trans-unit id="Rating">
+            <source>Rating</source>
+            <target>Ocena</target>
+        </trans-unit>
+        <trans-unit id="No Rating">
+            <source>No Rating</source>
+            <target>Brak oceny</target>
+        </trans-unit>
+        <trans-unit id="No comment">
+            <source>No comment</source>
+            <target>Brak komentarza</target>
+        </trans-unit>
+        <trans-unit id="message.cannot_delete_user">
+            <source>message.cannot_delete_user</source>
+            <target>Nie można usunąć użytkownika</target>
+        </trans-unit>
+    </body>
+  </file>
+</xliff>

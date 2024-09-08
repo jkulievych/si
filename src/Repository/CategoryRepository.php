@@ -1,31 +1,24 @@
 <?php
-
 /**
- * This file is part of the Symfony Demo application.
- *
- * (c) Symfony Demo <info@symfony.com>
- *
- * This source file is subject to the license that is bundled
- * with this source code in the file LICENSE.
+ * Category repository.
  */
 
 namespace App\Repository;
 
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\EntityManager;
 
 /**
+ * Class CategoryRepository.
+ *
  * @method Category|null find($id, $lockMode = null, $lockVersion = null)
  * @method Category|null findOneBy(array $criteria, array $orderBy = null)
  * @method Category[]    findAll()
  * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- *
- * @extends ServiceEntityRepository<Category>
  */
 class CategoryRepository extends ServiceEntityRepository
 {
@@ -46,8 +39,7 @@ class CategoryRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
-            ->select('partial category.{id, createdAt, updatedAt, title}')
+        return $this->createQueryBuilder('category')
             ->orderBy('category.updatedAt', 'DESC');
     }
 
@@ -61,53 +53,9 @@ class CategoryRepository extends ServiceEntityRepository
      */
     public function save(Category $category): void
     {
-        $category->setCreatedAt(new \DateTimeImmutable());
-        if (null !== $category->getId()) {
-            $category->setUpdatedAt(new \DateTimeImmutable());
-        }
-        $this->categoryRepository->save($category);
-    }
-
-    // ...
-    /**
-     * Edit action.
-     *
-     * @param Request  $request  HTTP request
-     * @param Category $category Category entity
-     *
-     * @return Response HTTP response
-     */
-    #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    public function edit(Request $request, Category $category): Response
-    {
-        $form = $this->createForm(
-            CategoryType::class,
-            $category,
-            [
-                'method' => 'PUT',
-                'action' => $this->generateUrl('category_edit', ['id' => $category->getId()]),
-            ]
-        );
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->categoryService->save($category);
-
-            $this->addFlash(
-                'success',
-                $this->translator->trans('message.created_successfully')
-            );
-
-            return $this->redirectToRoute('category_index');
-        }
-
-        return $this->render(
-            'category/edit.html.twig',
-            [
-                'form' => $form->createView(),
-                'category' => $category,
-            ]
-        );
+        assert($this->_em instanceof EntityManager);
+        $this->_em->persist($category);
+        $this->_em->flush();
     }
 
     /**
@@ -126,14 +74,14 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
+     * Retrieves a Category entity by its ID.
      *
-     * @param QueryBuilder|null $queryBuilder Query builder
+     * @param int $id The ID of the Category entity to retrieve
      *
-     * @return QueryBuilder Query builder
+     * @return Category|null The Category entity, or null if not found
      */
-    private function getOrCreateQueryBuilder(?QueryBuilder $queryBuilder = null): QueryBuilder
+    public function findOneById(int $id): ?Category
     {
-        return $queryBuilder ?? $this->createQueryBuilder('category');
+        return parent::findOneById($id);
     }
 }

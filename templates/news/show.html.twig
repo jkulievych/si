@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'News'|trans({'%id%': news.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'News'|trans({'%id%': news.id|default('')}) }}</h1>
+    {% if news is defined and news|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'Id'|trans }}</dt>
+            <dd>{{ news.id }}</dd>
+            <dt>{{ 'Created at'|trans }}</dt>
+            <dd>{{ news.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'Updated at'|trans }}</dt>
+            <dd>{{ news.updatedAt|format_date('long') }}</dd>
+            <dt>{{ 'Title'|trans }}</dt>
+            <dd>{{ news.title }}</dd>
+            <dt>{{ 'Description'|trans }}</dt>
+            <dd>{{ news.description }}</dd>
+            <dt>{{ 'Author'|trans }}</dt>
+            <dd>{{ news.author.username }}</dd>
+            <dt>{{ 'Comments'|trans }}</dt>
+            <dd>
+                {% if news.comments|length%}
+                    {% for comment in news.comments%}
+                        "{{comment.content}}" from {{comment.email}}
+                        {% if is_granted('DELETE', news) or is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-outline-danger" href="{{ path('comment_delete', {'id': comment.id}) }}">
+                                {{ 'Delete'|trans }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {{ 'No comments'|trans }}
+                {% endif %}
+            </dd>
+            <dt>{{ 'Rating'|trans }}</dt>
+            <dd>
+                {% if news.rating is not null %}
+                    {{ news.rating }}
+                {% else %}
+                    {{ 'No ratings'|trans }}
+                {% endif %}
+            </dd>
+        </dl>
+    {% else %}
+        <p>
+            {{ 'Record not found'|trans }}
+        </p>
+    {% endif %}
+    <a href="{{ path('news_index') }}" title="{{ 'Back'|trans }}">
+        {{ 'Back'|trans }}
+    </a>
+{% endblock %}

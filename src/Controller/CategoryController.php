@@ -6,13 +6,13 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Form\CategoryType;
+use App\Form\Type\CategoryType;
 use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class CategoryController.
@@ -23,22 +23,24 @@ class CategoryController extends AbstractController
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $categoryService Task service
+     * @param CategoryServiceInterface $categoryService Category service
+     * @param TranslatorInterface      $translator      Translator
      */
-    public function __construct(private readonly CategoryServiceInterface $categoryService)
+    public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly TranslatorInterface $translator)
     {
     }
 
     /**
      * Index action.
      *
-     * @param int $page Page number for pagination
+     * @param Request $request Request
      *
      * @return Response HTTP response
      */
     #[\Symfony\Component\Routing\Attribute\Route(name: 'category_index', methods: 'GET')]
-    public function index(#[MapQueryParameter] int $page = 1): Response
+    public function index(Request $request): Response
     {
+        $page = $request->query->getInt('page', 1);
         $pagination = $this->categoryService->getPaginatedList($page);
 
         return $this->render('category/index.html.twig', ['pagination' => $pagination]);
@@ -47,7 +49,7 @@ class CategoryController extends AbstractController
     /**
      * Show action.
      *
-     * @param Category $category Category
+     * @param Category $category Category entity
      *
      * @return Response HTTP response
      */
@@ -59,6 +61,12 @@ class CategoryController extends AbstractController
     )]
     public function show(Category $category): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('danger', $this->translator->trans('Access denied'));
+
+            return $this->redirectToRoute('category_index');
+        }
+
         return $this->render('category/show.html.twig', ['category' => $category]);
     }
 
@@ -76,6 +84,12 @@ class CategoryController extends AbstractController
     )]
     public function create(Request $request): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('danger', $this->translator->trans('Access denied'));
+
+            return $this->redirectToRoute('category_index');
+        }
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -83,18 +97,12 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->save($category);
 
-            $this->addFlash(
-                'success',
-                'Category created successfully' // Removed translator dependency
-            );
+            $this->addFlash('success', $this->translator->trans('Successfully created!'));
 
             return $this->redirectToRoute('category_index');
         }
 
-        return $this->render(
-            'category/create.html.twig',
-            ['form' => $form->createView()]
-        );
+        return $this->render('category/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -108,34 +116,24 @@ class CategoryController extends AbstractController
     #[\Symfony\Component\Routing\Attribute\Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Category $category): Response
     {
-        $form = $this->createForm(
-            CategoryType::class,
-            $category,
-            [
-                'method' => 'PUT',
-                'action' => $this->generateUrl('category_edit', ['id' => $category->getId()]),
-            ]
-        );
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('danger', $this->translator->trans('Access denied'));
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        $form = $this->createForm(CategoryType::class, $category, ['method' => 'PUT', 'action' => $this->generateUrl('category_edit', ['id' => $category->getId()])]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->save($category);
 
-            $this->addFlash(
-                'success',
-                'Category updated successfully' // Removed translator dependency
-            );
+            $this->addFlash('success', $this->translator->trans('Successfully edited'));
 
             return $this->redirectToRoute('category_index');
         }
 
-        return $this->render(
-            'category/edit.html.twig',
-            [
-                'form' => $form->createView(),
-                'category' => $category,
-            ]
-        );
+        return $this->render('category/edit.html.twig', ['form' => $form->createView(), 'category' => $category]);
     }
 
     /**
@@ -149,29 +147,29 @@ class CategoryController extends AbstractController
     #[\Symfony\Component\Routing\Attribute\Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Category $category): Response
     {
-        $form = $this->createForm(FormType::class, $category, [
-            'method' => 'DELETE',
-            'action' => $this->generateUrl('category_delete', ['id' => $category->getId()]),
-        ]);
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('danger', $this->translator->trans('Access denied'));
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        if (!$this->categoryService->canBeDeleted($category)) {
+            $this->addFlash('warning', $this->translator->trans('Category contains tasks'));
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        $form = $this->createForm(FormType::class, $category, ['method' => 'DELETE', 'action' => $this->generateUrl('category_delete', ['id' => $category->getId()])]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->delete($category);
 
-            $this->addFlash(
-                'success',
-                'Category deleted successfully' // Removed translator dependency
-            );
+            $this->addFlash('success', $this->translator->trans('Successfully deleted'));
 
             return $this->redirectToRoute('category_index');
         }
 
-        return $this->render(
-            'category/delete.html.twig',
-            [
-                'form' => $form->createView(),
-                'category' => $category,
-            ]
-        );
+        return $this->render('category/delete.html.twig', ['form' => $form->createView(), 'category' => $category]);
     }
 }

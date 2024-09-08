@@ -29,10 +29,10 @@ class TagService implements TagServiceInterface
     /**
      * Constructor.
      *
-     * @param TagRepository      $tagRepository Tag repository
      * @param PaginatorInterface $paginator     Paginator
+     * @param TagRepository      $tagRepository Tag repository
      */
-    public function __construct(private readonly TagRepository $tagRepository, private readonly PaginatorInterface $paginator)
+    public function __construct(private readonly PaginatorInterface $paginator, private readonly TagRepository $tagRepository)
     {
     }
 
@@ -45,8 +45,10 @@ class TagService implements TagServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
+        $query = $this->tagRepository->queryAll();
+
         return $this->paginator->paginate(
-            $this->tagRepository->queryAll(),
+            $query,
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -70,5 +72,17 @@ class TagService implements TagServiceInterface
     public function delete(Tag $tag): void
     {
         $this->tagRepository->delete($tag);
+    }
+
+    /**
+     * Find by title.
+     *
+     * @param string $title Tag title
+     *
+     * @return Tag|null Tag entity
+     */
+    public function findOneByTitle(string $title): ?Tag
+    {
+        return $this->tagRepository->findOneByTitle($title);
     }
 }

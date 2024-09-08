@@ -1,49 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.category_list'|trans }}
+    {{ 'Categories'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.category_list'|trans }}</h1>
-    {% if pagination is defined and pagination.items|length %}
+    <h1>{{ 'Categories'|trans }}</h1>
 
-        <div class="navigation text-center">
-            {{ knp_pagination_render(pagination) }}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="create_category">
+            <a href="{{ path('category_create') }}" class="btn btn-primary">{{ 'Create category'|trans }}</a>
         </div>
+    {% endif %}
 
-        <table class="table table-striped">
+    <div class="navigation text-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    {% if pagination is defined and pagination.items|length %}
+        <table class="table">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'ID'|trans, 'category.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Tytuł'|trans, 'category.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Data Utworzenia'|trans, 'category.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Data Aktualizacji'|trans, 'category.updatedAt') }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'category.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created at'|trans, 'category.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated at'|trans, 'category.updatedAt') }}</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>{{ 'Actions'|trans }}</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
             {% for category in pagination.items %}
                 <tr>
-                    <td>{{ category.id }}</td>
-                    <td><a href="{{ url('category_show', {id: category.id}) }}" class="no_underline">{{ category.title }}</a></td>
+                    <td>{{ category.title }}</td>
                     <td>{{ category.createdAt|format_date('long') }}</td>
                     <td>{{ category.updatedAt|format_date('long') }}</td>
                     <td>
-                        <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-primary">{{ 'action.show'|trans }}</a>
-                        <a href="{{ path('category_edit', {'id': category.id}) }}" class="btn btn-secondary">{{ 'action.edit'|trans }}</a>
-                        <form method="post" action="{{ path('category_delete', {'id': category.id}) }}" style="display:inline-block;" onsubmit="return confirm('{{ 'message.delete_confirm'|trans }}');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
-                            <button class="btn btn-danger">{{ 'action.delete'|trans }}</button>
-                        </form>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-outline-primary" href="{{ path('category_show', {'id': category.id}) }}">{{ 'Show'|trans }}</a>
+                            <a class="btn btn-outline-success" href="{{ path('category_edit', {'id': category.id}) }}">{{ 'Edit'|trans }}</a>
+                            <a class="btn btn-outline-danger" href="{{ path('category_delete', {'id': category.id}) }}">{{ 'Delete'|trans }}</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     {% else %}
-        <p>
-            {{ 'message.empty_list'|trans }}
-        </p>
+        <div class="alert alert-info" role="alert">
+            {{ 'Empty list'|trans }}
+        </div>
     {% endif %}
 {% endblock %}

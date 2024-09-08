@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'Tags'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'Tags'|trans }}</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="mb-3">
+            <a href="{{ path('tag_create') }}" class="btn btn-primary">{{ 'Create tag'|trans }}</a>
+        </div>
+    {% endif %}
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'id'|trans, 'tag.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created at'|trans, 'tag.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated at'|trans, 'tag.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'tag.title') }}</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>{{ 'Actions'|trans }}</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for tag in pagination.items %}
+                <tr>
+                    <td>{{ tag.id }}</td>
+                    <td>{{ tag.createdAt|format_date('long') }}</td>
+                    <td>{{ tag.updatedAt|format_date('long') }}</td>
+                    <td>{{ tag.title }}</td>
+                    <td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-outline-primary" href="{{ path('tag_show', {'id': tag.id}) }}">
+                                {{ 'Show'|trans }}
+                            </a>
+                            <a class="btn btn-outline-success" href="{{ path('tag_edit', {'id': tag.id}) }}">
+                                {{ 'Edit'|trans }}
+                            </a>
+                            <a class="btn btn-outline-danger" href="{{ path('tag_delete', {'id': tag.id}) }}">
+                                {{ 'Delete'|trans }}
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'Empty list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

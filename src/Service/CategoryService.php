@@ -1,19 +1,13 @@
 <?php
-/*
- * This file is part of the Symfony package.
- *
- * (c) Symfony Community <https://symfony.com>
- *
- * For the full copyright and license information, please view
- * the LICENSE file that was distributed with this source code.
+/**
+ * Category service.
  */
 
 namespace App\Service;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
-use App\Repository\QuestionRepository;
-use App\Repository\TaskRepository;
+use App\Repository\NewsRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -24,28 +18,17 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class CategoryService implements CategoryServiceInterface
 {
-    /**
-     * @var QuestionRepository
-     */
-    public $questionRepository;
-    // Dodajemy nowe pole do klasy
-
-    /**
-     * Items per page.
-     */
     private const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * Constructor.
      *
-     * @param CategoryRepository $categoryRepository Category repository
      * @param PaginatorInterface $paginator          Paginator
-     * @param QuestionRepository $questionRepository Question repository
-     * @param TaskRepository     $taskRepository     Task repository
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param NewsRepository     $newsRepository     News repository
      */
-    public function __construct(private readonly CategoryRepository $categoryRepository, private readonly PaginatorInterface $paginator, QuestionRepository $questionRepository, private readonly TaskRepository $taskRepository)
+    public function __construct(private readonly PaginatorInterface $paginator, private readonly CategoryRepository $categoryRepository, private readonly NewsRepository $newsRepository)
     {
-        $this->questionRepository = $questionRepository;
     }
 
     /**
@@ -57,8 +40,10 @@ class CategoryService implements CategoryServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
+        $query = $this->categoryRepository->queryAll();
+
         return $this->paginator->paginate(
-            $this->categoryRepository->queryAll(),
+            $query,
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -85,16 +70,16 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Can Category be deleted?
+     * Check if the category can be deleted.
      *
      * @param Category $category Category entity
      *
-     * @return bool Result
+     * @return bool True if the category can be deleted, false otherwise
      */
     public function canBeDeleted(Category $category): bool
     {
         try {
-            $result = $this->taskRepository->countByCategory($category);
+            $result = $this->newsRepository->countByCategory($category);
 
             return $result <= 0;
         } catch (NoResultException|NonUniqueResultException) {

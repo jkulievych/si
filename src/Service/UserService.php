@@ -1,39 +1,47 @@
 <?php
-
 /**
  * User service.
  */
 
 namespace App\Service;
 
-use App\Repository\UserRepository;
 use App\Entity\User;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * Class NoteService.
+ * Class UserService.
  */
 class UserService implements UserServiceInterface
 {
+    /**
+     * Items per page.
+     *
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in app/config/config.yml.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
+     */
     private const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
+     * Constructor.
+     *
      * @param UserRepository     $userRepository User repository
      * @param PaginatorInterface $paginator      Paginator
      */
     public function __construct(private readonly UserRepository $userRepository, private readonly PaginatorInterface $paginator)
     {
-    }// end __construct()
+    }
 
     /**
      * Get paginated list.
      *
      * @param int $page Page number
      *
-     * @return PaginationInterface Pagination
+     * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
@@ -42,7 +50,7 @@ class UserService implements UserServiceInterface
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE
         );
-    }// end getPaginatedList()
+    }
 
     /**
      * Save entity.
@@ -52,18 +60,25 @@ class UserService implements UserServiceInterface
     public function save(User $user): void
     {
         $this->userRepository->save($user);
-    }// end save()
+    }
 
     /**
      * Delete entity.
      *
      * @param User $user User entity
-     *
-     * @throws OptimisticLockException
-     * @throws ORMException
      */
     public function delete(User $user): void
     {
         $this->userRepository->delete($user);
-    }// end delete()
-}// end class
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param User $user User entity
+     */
+    public function deleteUserWithRelatedEntities(User $user): void
+    {
+        $this->userRepository->deleteUserWithRelatedEntities($user);
+    }
+}

@@ -1,12 +1,10 @@
 <?php
-
 /**
  * Login form authenticator.
  */
 
 namespace App\Security;
 
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -39,17 +37,16 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      *
      * @const string
      */
-    private const DEFAULT_ROUTE = 'note_index';
+    private const DEFAULT_ROUTE = 'news_index';
 
     /**
      * Constructor.
      *
      * @param UrlGeneratorInterface $urlGenerator Url generator
-     * @param Security              $security     Security
      */
-    public function __construct(private readonly UrlGeneratorInterface $urlGenerator, private Security $security)
+    public function __construct(private readonly UrlGeneratorInterface $urlGenerator)
     {
-    }// end __construct()
+    }
 
     /**
      * Does the authenticator support the given Request?
@@ -64,7 +61,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
             && $request->isMethod('POST');
-    }// end supports()
+    }
 
     /**
      * Create a passport for the current request.
@@ -89,14 +86,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
-        return new Passport(
-            new UserBadge($email),
-            new PasswordCredentials((string) $request->request->get('password', '')),
-            [
-                new CsrfTokenBadge('authenticate', (string) $request->request->get('_csrf_token')),
-            ]
-        );
-    }// end authenticate()
+        return new Passport(new UserBadge($email), new PasswordCredentials((string) $request->request->get('password', '')), [new CsrfTokenBadge('authenticate', (string) $request->request->get('_csrf_token'))]);
+    }
 
     /**
      * Called when authentication executed and was successful!
@@ -121,12 +112,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        if ($this->security->isGranted('ROLE_ADMIN')) {
-            return new RedirectResponse($this->urlGenerator->generate('user_index'));
-        }
-
         return new RedirectResponse($this->urlGenerator->generate(self::DEFAULT_ROUTE));
-    }// end onAuthenticationSuccess()
+    }
 
     /**
      * Get login URL.
@@ -138,5 +125,5 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
-    }// end getLoginUrl()
-}// end class
+    }
+}

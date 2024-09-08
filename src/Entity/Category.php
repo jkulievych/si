@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Category entity.
  */
@@ -17,7 +16,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ORM\Table(name: 'categories')]
-#[ORM\UniqueConstraint(name: 'uq_categories_title', columns: ['title'])]
 #[UniqueEntity(fields: ['title'])]
 class Category
 {
@@ -51,7 +49,6 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max: 64)]
     private ?string $title = null;
 
     /**
@@ -59,11 +56,8 @@ class Category
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
-    #[Assert\Length(min: 3, max: 64)]
     #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug = null;
-
-    // Getters and setters...
 
     /**
      * Getter for Id.
@@ -136,9 +130,7 @@ class Category
     }
 
     /**
-     * Getter for slug.
-     *
-     * @return string|null Slug
+     * @return string|null string
      */
     public function getSlug(): ?string
     {
@@ -146,13 +138,11 @@ class Category
     }
 
     /**
-     * Setter for slug.
+     * @param string $slug Slug
      *
-     * @param string|null $slug Slug
-     *
-     * @return static returns instance of this class to allow for method chaining
+     * @return $this this
      */
-    public function setSlug(?string $slug): static
+    public function setSlug(string $slug): static
     {
         $this->slug = $slug;
 

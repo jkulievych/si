@@ -1,11 +1,6 @@
 <?php
 /**
- * This file is part of the App package.
- *
- * (c) [Your Name] <your@email.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ *  Tag repository.
  */
 
 namespace App\Repository;
@@ -13,18 +8,11 @@ namespace App\Repository;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Tag>
- *
- * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
- * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
- * @method Tag[]    findAll()
- * @method Tag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class TagRepository extends ServiceEntityRepository
 {
@@ -46,7 +34,6 @@ class TagRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('partial tag.{id, createdAt, updatedAt, title, slug}')
             ->orderBy('tag.updatedAt', 'DESC');
     }
 
@@ -61,11 +48,6 @@ class TagRepository extends ServiceEntityRepository
     public function save(Tag $tag): void
     {
         assert($this->_em instanceof EntityManager);
-        if (null === $tag->getId()) {
-            $tag->setCreatedAt(new \DateTimeImmutable());
-        }
-        $tag->setUpdatedAt(new \DateTimeImmutable());
-
         $this->_em->persist($tag);
         $this->_em->flush();
     }
@@ -83,6 +65,51 @@ class TagRepository extends ServiceEntityRepository
         assert($this->_em instanceof EntityManager);
         $this->_em->remove($tag);
         $this->_em->flush();
+    }
+
+    /**
+     * Retrieves all Tag entities from the database.
+     *
+     * @return array An array of Tag entities
+     */
+    public function findAll(): array
+    {
+        return parent::findAll();
+    }
+
+    /**
+     * Finds Tag entities by their titles.
+     *
+     * @param array $titles An array of tag titles to search for
+     *
+     * @return array An array of Tag entities indexed by title in lowercase
+     */
+    public function findByTitles(array $titles): array
+    {
+        $tags = $this->createQueryBuilder('t')
+            ->where('LOWER(t.title) IN (:titles)')
+            ->setParameter('titles', array_map(strtolower(...), $titles))
+            ->getQuery()
+            ->getResult();
+
+        $tagMap = [];
+        foreach ($tags as $tag) {
+            $tagMap[strtolower((string) $tag->getTitle())] = $tag;
+        }
+
+        return $tagMap;
+    }
+
+    /**
+     * Retrieves a Tag entity by its ID.
+     *
+     * @param int $id The ID of the Tag entity to retrieve
+     *
+     * @return Tag|null The Tag entity, or null if not found
+     */
+    public function findOneById(int $id): ?Tag
+    {
+        return $this->find($id);
     }
 
     /**
