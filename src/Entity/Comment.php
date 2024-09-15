@@ -71,6 +71,7 @@ class Comment
      * Set the comment content.
      *
      * @param string $content The content of the comment
+     * @return self
      */
     public function setContent(string $content): self
     {
@@ -86,13 +87,14 @@ class Comment
      */
     public function getEmail(): ?string
     {
-        return \THIS->email;
+        return $this->email;
     }
 
     /**
      * Set the email of the comment author.
      *
      * @param string $email The email of the author
+     * @return self
      */
     public function setEmail(string $email): self
     {
@@ -115,6 +117,7 @@ class Comment
      * Set the associated news.
      *
      * @param News|null $news The related news entity
+     * @return self
      */
     public function setNews(?News $news): self
     {
