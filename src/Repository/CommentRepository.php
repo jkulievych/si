@@ -63,21 +63,4 @@ class CommentRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
-    /**
-     * Find all comments by news.
-     *
-     * @param int $newsId The ID of the news entity
-     *
-     * @return Comment[] An array of comment entities
-     */
-    public function findByNews(int $newsId): array
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.news = :newsId')
-            ->setParameter('newsId', $newsId)
-            ->orderBy('c.id', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
 }
