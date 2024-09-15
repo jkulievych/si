@@ -82,6 +82,16 @@
           <source>message.created_successfully</source>
           <target>Utworzono pomyślnie.</target>
       </trans-unit>
+      <trans-unit id="Successfully edited">
+                <source>Successfully edited</source>
+                <target>Edytowano pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="Successfully created!">
+                            <source>Successfully created!</source>
+                            <target>Stworzono pomyślnie</target>
+                        </trans-unit>
+
+
       <trans-unit id="message.category_contains_tasks">
           <source>message.category_contains_tasks</source>
           <target>Ta kategoria zawiera zadania i nie moźe być usunięta.</target>
@@ -122,6 +132,10 @@
           <source>Edit</source>
           <target>Edytuj</target>
       </trans-unit>
+      <trans-unit id="Edit news">
+                <source>Edit news</source>
+                <target>Edytuj wiadomość</target>
+            </trans-unit>
       <trans-unit id="Rate">
           <source>Rate</source>
           <target>Oceń</target>
@@ -130,13 +144,17 @@
           <source>Comment</source>
           <target>Skomentuj</target>
       </trans-unit>
+      <trans-unit id="No comments">
+                <source>No comments</source>
+                <target>Niema komentarzy</target>
+            </trans-unit>
       <trans-unit id="message.form_error">
           <source>message.form_error</source>
           <target>Wystąpił błąd podczas przesyłania formularza. Sprawdź formularz i spróbuj ponownie.</target>
       </trans-unit>
       <trans-unit id="Create news">
           <source>Create news</source>
-          <target>Utwórz wiadomośc</target>
+          <target>Utwórz wiadomość</target>
       </trans-unit>
       <trans-unit id="title.news_delete">
           <source>title.news_delete</source>
@@ -354,7 +372,7 @@
 
       <trans-unit id="News">
           <source>News</source>
-          <target>Wiadomośći</target>
+          <target>Wiadomości</target>
       </trans-unit>
 
       <trans-unit id="title.comment_details">
