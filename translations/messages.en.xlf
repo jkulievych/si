@@ -10,22 +10,100 @@
         <source>label.id</source>
         <target>Id</target>
       </trans-unit>
+      <trans-unit id="Id">
+              <source>Id</source>
+              <target>Id</target>
+            </trans-unit>
+            <trans-unit id="id">
+                          <source>id</source>
+                          <target>Id</target>
+                        </trans-unit>
       <trans-unit id="Title">
         <source>Title</source>
         <target>Title</target>
       </trans-unit>
+      <trans-unit id="Selected">
+              <source>Selected</source>
+              <target>Selected</target>
+            </trans-unit>
       <trans-unit id="Content">
         <source>Content</source>
         <target>Content</target>
       </trans-unit>
+      <trans-unit id="Delete news">
+              <source>Delete news</source>
+              <target>Delete news</target>
+            </trans-unit>
+      <trans-unit id="Edit news">
+                    <source>Edit news</source>
+                    <target>Edit news</target>
+                  </trans-unit>
+      <trans-unit id="Submit">
+                          <source>Submit</source>
+                          <target>Submit</target>
+                        </trans-unit>
       <trans-unit id="Tags">
         <source>Tags</source>
         <target>Tags</target>
       </trans-unit>
+      <trans-unit id="Leave a Comment">
+              <source>Leave a Comment</source>
+              <target>Leave a Comment</target>
+            </trans-unit>
+      <trans-unit id="Create user">
+                    <source>Create user</source>
+                    <target>Create user</target>
+                  </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
         <target>List is empty.</target>
       </trans-unit>
+      <trans-unit id="Comments">
+              <source>Comments</source>
+              <target>Comments</target>
+            </trans-unit>
+      <trans-unit id="Back">
+                    <source>Back</source>
+                    <target>Back</target>
+                  </trans-unit>
+      <trans-unit id="Empty list">
+                          <source>Empty list</source>
+                          <target>Empty list</target>
+                        </trans-unit>
+      <trans-unit id="Sign in">
+                    <source>Sign in</source>
+                    <target>Sign in</target>
+                  </trans-unit>
+      <trans-unit id="Register">
+                          <source>Register</source>
+                          <target>Register</target>
+                        </trans-unit>
+      <trans-unit id="Password">
+                                <source>Password</source>
+                                <target>Password</target>
+                              </trans-unit>
+      <trans-unit id="Email">
+        <source>Email</source>
+        <target>Email</target>
+        </trans-unit>
+
+       <trans-unit id="Successfully edited">
+               <source>Successfully edited</source>
+               <target>Successfully edited</target>
+               </trans-unit>
+
+        <trans-unit id="Comment successfully added!">
+                <source>Comment successfully added!</source>
+                <target>Comment successfully added!</target>
+                </trans-unit>
+            <trans-unit id="Remember me">
+                          <source>Remember me</source>
+                          <target>Remember me</target>
+                        </trans-unit>
+      <trans-unit id="Empty">
+                    <source>Empty</source>
+                    <target>List is empty.</target>
+                  </trans-unit>
       <trans-unit id="Record not found">
         <source>Record not found</source>
         <target>Record not found.</target>
@@ -70,10 +148,22 @@
         <source>Show</source>
         <target>Show</target>
       </trans-unit>
+      <trans-unit id="Category contains tasks">
+                          <source>Category contains tasks</source>
+                          <target>Category contains tasks</target>
+                      </trans-unit>
       <trans-unit id="message.created_successfully">
           <source>message.created_successfully</source>
           <target>Created successfully.</target>
       </trans-unit>
+      <trans-unit id="Comment successfully deleted">
+                <source>Comment successfully deleted</source>
+                <target>Comment successfully deleted</target>
+            </trans-unit>
+            <trans-unit id="Successfully deleted">
+                                                <source>Successfully deleted</source>
+                                                <target>Successfully deleted</target>
+                                            </trans-unit>
       <trans-unit id="message.category_contains_tasks">
           <source>message.category_contains_tasks</source>
           <target>This category contains tasks and cannot be deleted.</target>
@@ -94,16 +184,20 @@
           <source>Save</source>
           <target>Save</target>
       </trans-unit>
-      <trans-unit id="title.category_delete">
-          <source>title.category_delete</source>
+      <trans-unit id="Create tag">
+                <source>Create tag</source>
+                <target>Create tag</target>
+            </trans-unit>
+      <trans-unit id="Delete category">
+          <source>Delete category</source>
           <target>Delete Category #%id%</target>
       </trans-unit>
       <trans-unit id="Delete">
           <source>Delete</source>
           <target>Delete</target>
       </trans-unit>
-      <trans-unit id="title.category_edit">
-          <source>title.category_edit</source>
+      <trans-unit id="Edit category">
+          <source>Edit category</source>
           <target>Edit Category #%id%</target>
       </trans-unit>
       <trans-unit id="Edit">
@@ -118,6 +212,10 @@
           <source>Comment</source>
           <target>Comment</target>
       </trans-unit>
+      <trans-unit id="Successfully created!">
+                <source>Successfully created!</source>
+                <target>Successfully created!</target>
+            </trans-unit>
       <trans-unit id="message.form_error">
           <source>message.form_error</source>
           <target>There was an error with the form submission. Please check the form and try again.</target>
@@ -126,6 +224,14 @@
           <source>Create news</source>
           <target>Create News</target>
       </trans-unit>
+      <trans-unit id="Delete tag">
+                <source>Delete tag</source>
+                <target>Delete tag</target>
+            </trans-unit>
+      <trans-unit id="No comments">
+                      <source>No comments</source>
+                      <target>No comments</target>
+                  </trans-unit>
       <trans-unit id="title.news_delete">
           <source>title.news_delete</source>
           <target>Delete News #%id%</target>
@@ -218,13 +324,8 @@
           <target>Create Tag</target>
       </trans-unit>
 
-      <trans-unit id="title.tag_delete">
-          <source>title.tag_delete</source>
-          <target>Delete Tag</target>
-      </trans-unit>
-
-      <trans-unit id="title.tag_edit">
-          <source>title.tag_edit</source>
+      <trans-unit id="Edit tag">
+          <source>Edit tag</source>
           <target>Edit Tag</target>
       </trans-unit>
 
@@ -233,8 +334,8 @@
           <target>Tag List</target>
       </trans-unit>
 
-      <trans-unit id="title.tag_details">
-          <source>title.tag_details</source>
+      <trans-unit id="Tag details">
+          <source>Tag details</source>
           <target>Tag Details</target>
       </trans-unit>
 
@@ -243,13 +344,13 @@
           <target>Create User</target>
       </trans-unit>
 
-      <trans-unit id="title.user_delete">
-          <source>title.user_delete</source>
+      <trans-unit id="Delete user">
+          <source>Delete user</source>
           <target>Delete User</target>
       </trans-unit>
 
-      <trans-unit id="title.user_edit">
-          <source>title.user_edit</source>
+      <trans-unit id="Edit user">
+          <source>Edit user</source>
           <target>Edit User</target>
       </trans-unit>
 
@@ -263,13 +364,13 @@
           <target>Email</target>
       </trans-unit>
 
-      <trans-unit id="label.roles">
-          <source>label.roles</source>
+      <trans-unit id="Roles">
+          <source>Roles</source>
           <target>Roles</target>
       </trans-unit>
 
-      <trans-unit id="title.user_details">
-          <source>title.user_details</source>
+      <trans-unit id="User details">
+          <source>User details</source>
           <target>User Details</target>
       </trans-unit>
       <trans-unit id="validators.current_password">
@@ -320,24 +421,24 @@
               <source>label.page_title</source>
               <target>Page Title</target>
             </trans-unit>
-            <trans-unit id="label.category_details">
-              <source>label.category_details</source>
+            <trans-unit id="Category details">
+              <source>Category details</source>
               <target>Category Details</target>
             </trans-unit>
             <trans-unit id="label.news_title">
               <source>label.news_title</source>
               <target>News Title</target>
             </trans-unit>
-            <trans-unit id="title.comment_create">
-              <source>title.comment_create</source>
+            <trans-unit id="Create comment">
+              <source>Create comment</source>
               <target>Create Comment</target>
             </trans-unit>
-            <trans-unit id="title.comment_delete">
-              <source>title.comment_delete</source>
+            <trans-unit id="Delete comment">
+              <source>Delete comment</source>
               <target>Delete Comment</target>
             </trans-unit>
-            <trans-unit id="title.comment_edit">
-              <source>title.comment_edit</source>
+            <trans-unit id="Edit comment">
+              <source>Edit comment</source>
               <target>Edit Comment</target>
             </trans-unit>
             <trans-unit id="title.comment_list">
@@ -352,8 +453,8 @@
               <source>NEWS Magazine</source>
               <target>NEWS Magazine</target>
             </trans-unit>
-            <trans-unit id="title.comment_details">
-              <source>title.comment_details</source>
+            <trans-unit id="Comment details">
+              <source>Comment details</source>
               <target>Comment Details</target>
             </trans-unit>
             <trans-unit id="All categories">
@@ -368,8 +469,8 @@
               <source>Filter</source>
               <target>Filter</target>
             </trans-unit>
-            <trans-unit id="message.logged_in">
-              <source>message.logged_in</source>
+            <trans-unit id="Logged in">
+              <source>Logged in</source>
               <target>Logged in successfully.</target>
             </trans-unit>
             <trans-unit id="message.logged_out">
@@ -404,8 +505,8 @@
             <source>action.rate</source>
             <target>Rate</target>
         </trans-unit>
-        <trans-unit id="message.access_denied">
-            <source>message.access_denied</source>
+        <trans-unit id="Access denied">
+            <source>Access denied</source>
             <target>Access denied</target>
         </trans-unit>
         <trans-unit id="Users">
@@ -457,28 +558,26 @@
             <source>label.log_in</source>
             <target>Log in</target>
         </trans-unit>
-        <trans-unit id="message.incorrect_password">
-            <source>message.incorrect_password</source>
+        <trans-unit id="Incorrect password">
+            <source>Incorrect password</source>
             <target>Incorrect password</target>
         </trans-unit>
         <trans-unit id="Rating">
             <source>Rating</source>
             <target>Rating</target>
         </trans-unit>
-        <trans-unit id="No Rating">
-            <source>No Rating</source>
-            <target>No rating</target>
+        <trans-unit id="No ratings">
+            <source>No ratings</source>
+            <target>No Ratings</target>
         </trans-unit>
         <trans-unit id="label.no_comment">
             <source>label.no_comment</source>
             <target>No comment</target>
         </trans-unit>
-        <trans-unit id="message.cannot_delete_user">
-            <source>message.cannot_delete_user</source>
+        <trans-unit id="Cannot delete user">
+            <source>Cannot delete user</source>
             <target>Cannot delete user</target>
         </trans-unit>
-
-
     </body>
   </file>
 </xliff>
