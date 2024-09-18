@@ -112,8 +112,8 @@
           <source>Save</source>
           <target>Zapisz</target>
       </trans-unit>
-      <trans-unit id="title.category_delete">
-          <source>title.category_delete</source>
+      <trans-unit id="Delete category">
+          <source>Delete category</source>
           <target>Usuń kategorię #%id%</target>
       </trans-unit>
       <trans-unit id="Delete">
@@ -124,14 +124,18 @@
                 <source>Delete news</source>
                 <target>Usuń wiadomośc</target>
             </trans-unit>
-      <trans-unit id="title.category_edit">
-          <source>title.category_edit</source>
+      <trans-unit id="Edit category">
+          <source>Edit category</source>
           <target>Edytuj kategorię #%id%</target>
       </trans-unit>
       <trans-unit id="Edit">
           <source>Edit</source>
           <target>Edytuj</target>
       </trans-unit>
+      <trans-unit id="Empty">
+                <source>Empty</source>
+                <target>Pusta lista</target>
+            </trans-unit>
       <trans-unit id="Edit news">
                 <source>Edit news</source>
                 <target>Edytuj wiadomość</target>
@@ -260,12 +264,12 @@
         <source>Create user</source>
         <target>Utwórz użytkownika</target>
       </trans-unit>
-      <trans-unit id="title.user_delete">
-        <source>title.user_delete</source>
+      <trans-unit id="Delete user">
+        <source>Delete user</source>
         <target>Usuń użytkownika</target>
       </trans-unit>
-      <trans-unit id="title.user_edit">
-        <source>title.user_edit</source>
+      <trans-unit id="Edit user">
+        <source>Edit user</source>
         <target>Edytuj użytkownika</target>
       </trans-unit>
       <trans-unit id="title.user_list">
@@ -340,8 +344,8 @@
           <target>Tytuł strony</target>
       </trans-unit>
 
-      <trans-unit id="label.category_details">
-          <source>label.category_details</source>
+      <trans-unit id="Category details">
+          <source>Category details</source>
           <target>Szczegóły kategorii</target>
       </trans-unit>
 
@@ -350,18 +354,18 @@
           <target>Tytuł wiadomości</target>
       </trans-unit>
 
-      <trans-unit id="title.comment_create">
-          <source>title.comment_create</source>
+      <trans-unit id="Create comment">
+          <source>Create comment</source>
           <target>Utwórz komentarz</target>
       </trans-unit>
 
-      <trans-unit id="title.comment_delete">
-          <source>title.comment_delete</source>
+      <trans-unit id="Delete comment">
+          <source>Delete comment</source>
           <target>Usuń komentarz</target>
       </trans-unit>
 
-      <trans-unit id="title.comment_edit">
-          <source>title.comment_edit</source>
+      <trans-unit id="Edit comment">
+          <source>Edit comment</source>
           <target>Edytuj komentarz</target>
       </trans-unit>
 
@@ -375,8 +379,8 @@
           <target>Wiadomości</target>
       </trans-unit>
 
-      <trans-unit id="title.comment_details">
-          <source>title.comment_details</source>
+      <trans-unit id="Comment details">
+          <source>Comment details</source>
           <target>Szczegóły komentarza</target>
       </trans-unit>
 
@@ -400,8 +404,8 @@
           <target>Filtruj</target>
       </trans-unit>
 
-      <trans-unit id="message.logged_in">
-          <source>message.logged_in</source>
+      <trans-unit id="Logged in">
+          <source>Logged in</source>
           <target>Zalogowano</target>
       </trans-unit>
 
@@ -437,8 +441,8 @@
             <source>action.rate</source>
             <target>Oceń</target>
         </trans-unit>
-        <trans-unit id="message.access_denied">
-            <source>message.access_denied</source>
+        <trans-unit id="Access denied">
+            <source>Access denied</source>
             <target>Brak dostępu</target>
         </trans-unit>
         <trans-unit id="Users">
@@ -490,26 +494,56 @@
             <source>label.log_in</source>
             <target>Zaloguj się</target>
         </trans-unit>
-        <trans-unit id="message.incorrect_password">
-            <source>message.incorrect_password</source>
+        <trans-unit id="Incorrect password">
+            <source>Incorrect password</source>
             <target>Nieprawidłowe hasło</target>
         </trans-unit>
         <trans-unit id="Rating">
             <source>Rating</source>
             <target>Ocena</target>
         </trans-unit>
-        <trans-unit id="No Rating">
-            <source>No Rating</source>
+        <trans-unit id="Comment successfully deleted">
+                        <source>Comment successfully deleted</source>
+                        <target>Komentarz dodano pomyślnie</target>
+                    </trans-unit>
+                    <trans-unit id="Successfully deleted">
+                                    <source>Successfully deleted</source>
+                                    <target>Usunięto pomyślnie</target>
+                                </trans-unit>
+        <trans-unit id="No ratings">
+            <source>No ratings</source>
             <target>Brak oceny</target>
         </trans-unit>
+        <trans-unit id="Category contains tasks">
+                    <source>Category contains tasks</source>
+                    <target>Kategoria zawiera taski</target>
+                </trans-unit>
         <trans-unit id="No comment">
             <source>No comment</source>
             <target>Brak komentarza</target>
         </trans-unit>
-        <trans-unit id="message.cannot_delete_user">
-            <source>message.cannot_delete_user</source>
+        <trans-unit id="Cannot delete user">
+            <source>Cannot delete user</source>
             <target>Nie można usunąć użytkownika</target>
         </trans-unit>
+        <trans-unit id="User details">
+                  <source>User details</source>
+                  <target>Szczegóły użytkownika</target>
+              </trans-unit>
+        <trans-unit id="Tag details">
+                  <source>Tag details</source>
+                  <target>Szczegóły tagu</target>
+              </trans-unit>
+
+        <trans-unit id="Edit tag">
+                  <source>Edit tag</source>
+                  <target>Edytować Tag</target>
+              </trans-unit>
+
+         <trans-unit id="Delete tag">
+                   <source>Delete tag</source>
+                   <target>Usunąć tag</target>
+               </trans-unit>
     </body>
   </file>
 </xliff>
